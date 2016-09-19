@@ -1,0 +1,8 @@
+#!/bin/dash
+trap "trap - TERM && kill -- -$$" INT TERM EXIT
+
+echo Starting app script ...
+export PORT=1234
+echo Starting app ...
+
+{ env; while sleep 5 ; do date; done; } | while read X; do echo "App: $X"; done

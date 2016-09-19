@@ -1,0 +1,14 @@
+#!/bin/dash
+trap "trap - TERM && kill -- -$$" INT TERM EXIT
+
+while sleep 30 ; do
+  ps \
+    -e \
+    --format pid=,size= \
+    --sort=-pid
+done \
+| awk \
+    -W interactive \
+    'BEGIN{mem=0}
+     $1!="1"{mem+=$2}
+     $1=="1"{print mem;mem=0}'

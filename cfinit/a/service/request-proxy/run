@@ -1,0 +1,2 @@
+#!/bin/bash
+trap "trap - TERM && kill -- -$$" INT TERM EXIT

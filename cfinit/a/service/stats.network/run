@@ -1,0 +1,19 @@
+#!/bin/dash
+trap "trap - TERM && kill -- -$$" INT TERM EXIT
+
+export GD_CF_ZONE=swisscom
+
+while sleep 30; do \
+  nstat \
+    -s \
+    -a \
+    --json
+done \
+| jq \
+    --unbuffered \
+    --compact-output \
+    --monochrome-output \
+    --arg logtype cns \
+    --arg cfidx $CF_INSTANCE_INDEX \
+    --arg cfzone $GD_CF_ZONE \
+    '{ ($logtype): { kernel, cf: { idx: $cfidx, zone: $cfzone }}}'

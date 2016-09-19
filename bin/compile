@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cp -priv $1/cfinit/a/ $1/.cfinit/

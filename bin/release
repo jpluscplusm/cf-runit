@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cat <<END
+default_process_types:
+  web: export PATH=\$(pwd -P)/.cfinit/bin:\$PATH SVDIR=\$(pwd -P)/.cfinit/service/; exec runsvdir -P \$SVDIR
+END
